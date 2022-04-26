@@ -19,8 +19,10 @@ function populateForm(i)
         data: { id: i },
         dataType: 'json',
         success: function (response) {
+            console.log(response);
             $('#Todo_Id').val(response.id);
             $('#Todo_Title').val(response.title);
+            $('#Todo_Type').val(response.type);
             $('#form-button').val("Update Todo");
             $('#form-action').attr("action", "/Home/Update");
         }

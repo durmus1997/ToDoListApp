@@ -27,7 +27,7 @@ namespace ToDoListApp.Controllers
             var todos = _context.ToDos.ToList();
             return new ToDoViewModel
             {
-                ToDoList = todos
+                ToDoList = (List<ToDo>)todos
             };
         }
 
@@ -68,6 +68,7 @@ namespace ToDoListApp.Controllers
         {
             var todoToUpdate = _context.ToDos.Find(todo.Id);
             todoToUpdate.UpdateDate = System.DateTime.Now;
+            todoToUpdate.Type = todo.Type;
             _context.ToDos.Update(todoToUpdate);
             _context.SaveChanges();
 

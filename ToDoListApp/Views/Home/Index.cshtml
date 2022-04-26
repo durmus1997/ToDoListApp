@@ -1,6 +1,7 @@
 ﻿@model ToDoViewModel
 @{
     ViewData["Title"] = "Home Page";
+    int count = 1;
 }
 
 
@@ -9,25 +10,46 @@
         <table class="table">
             <thead>
                 <tr class="table-primary">
-                    <th scope="col">Id</th>
+                    <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col"></th>
+                    <th scope="col">ToDo Types</th>
+                    <th scope="col">Create Date</th>
+                    <th scope="col">Update Date</th>
+                    <th scope="col">Operations</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var t in Model.ToDoList)
                 {
                     <tr>
-                        <th class="todos-column" scope="row">@t.Id</th>
+                        <th class="todos-column" scope="row">@count</th>
                         <td class="todos-column">@t.Title</td>
+                        <td class="todos-column">
+                            @switch (@t.Type)
+                            {
+                                case ToDo.ToDoType.Daily:
+                                    <span>Daily</span>
+                                    break;
+                                case ToDo.ToDoType.Weekly:
+                                    <span>Weekly</span>
+                                    break;
+                                case ToDo.ToDoType.Monthly:
+                                    <span>Monthly</span>
+                                    break;
+                                case ToDo.ToDoType.Yearly:
+                                    <span>Yearly</span>
+                                    break;
+                            }
+                        </td>
                         <td class="todos-column">@t.CreateDate</td>
                         <td class="todos-column">@t.UpdateDate</td>
-                        <td class="buttons-column">
-                            <input type="submit" class="btn btn-danger" value="Delete" onClick="deleteTodo(@t.Id)" />
+                        <td scope="col" class="buttons-column" style="white-space:nowrap;">
                             <input type="submit" class="btn btn-primary" value="Update" onClick="populateForm(@t.Id)" />
+                            <input type="submit" class="btn btn-danger" value="Delete" onClick="deleteTodo(@t.Id)" />
                         </td>
 
                     </tr>
+                    count++;
                 }
             </tbody>
         </table>

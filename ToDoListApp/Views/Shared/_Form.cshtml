@@ -8,6 +8,13 @@
             <label asp-for="ToDo.Title" class="form-label"></label>
             <input id="Todo_Id" asp-for="ToDo.Id" type="hidden" class="form-control" />
             <input id="Todo_Title" asp-for="ToDo.Title" class="form-control" />
+            <label asp-for="ToDo.Type" class="form-label"></label>
+            <select id="Todo_Type" asp-for="ToDo.Type" class="form-control">
+                <option value="0">Daily</option>
+                <option value="1">Weekly</option>
+                <option value="2">Monthly</option>
+                <option value="3">Yearly</option>
+            </select>
             <span asp-validation-for="ToDo.Title" class="text-danger"></span>
         </div>
     </div>
